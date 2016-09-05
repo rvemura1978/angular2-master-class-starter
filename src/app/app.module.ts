@@ -7,7 +7,7 @@ import {ContactsServiceService} from './contacts-service/contacts-service.servic
 import { ContactsListComponentComponent } from './contacts-list-component/contacts-list-component.component';
 
 
-import {RouterModule, ROUTER_DIRECTIVES } from '@angular/router';
+import {RouterModule } from '@angular/router';
 
 
 
@@ -15,9 +15,11 @@ import {RouterModule, ROUTER_DIRECTIVES } from '@angular/router';
 
 import { ContactsAppRoutes } from './app.routes';
 
+import { ContactDetailComponentComponent } from './contact-detail-component/contact-detail-component.component';
+
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsHeaderComponent, ContactsListComponentComponent],
+  declarations: [ContactsAppComponent, ContactsHeaderComponent, ContactsListComponentComponent, ContactDetailComponentComponent],
   imports: [BrowserModule, RouterModule.forRoot(ContactsAppRoutes)],
   providers:[ContactsServiceService],
   bootstrap: [ContactsAppComponent]
