@@ -15,8 +15,9 @@ export class ContactsServiceService {
 
 
   getContact(id: any):Observable<Contact> {
-    return this.http.get(`${this.API_ENDPOINT}/contact/${id}`)
-      .map(res => res.json());
+    return this.http.get(`${this.API_ENDPOINT}/contacts/${id}`)
+      .map(res => res.json().item);
+
 
   }
 
