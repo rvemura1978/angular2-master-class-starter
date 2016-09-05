@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ContactsHeaderComponent } from './contacts-header/contacts-header.component';
 import { Contact} from './models/contact';
 import { CONTACT_DATA } from './data/contact-data';
+import {ContactsServiceService} from './contacts-service/contacts-service.service';
+
 
 @Component({
   selector: 'trm-contacts-app',
@@ -9,8 +11,18 @@ import { CONTACT_DATA } from './data/contact-data';
   styleUrls: ['contacts.component.css'],
   directives: [ ContactsHeaderComponent]
 })
-export class ContactsAppComponent {
+export class ContactsAppComponent implements  OnInit {
+
+  contacts: Contact[];
+  constructor(private contactService:ContactsServiceService){}
+
+  ngOnInit(){
+  this.contacts = this.contactService.getContacts();
+}
+
+
   title = 'Angular 2 Master Class setup works!';
+  /*
   contacts: Contact[] = CONTACT_DATA;
   contact: Contact = {
     id: 7,
@@ -27,4 +39,5 @@ export class ContactsAppComponent {
       country: 'United States'
     }
   };
+  */
 }
