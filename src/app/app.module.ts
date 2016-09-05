@@ -9,8 +9,8 @@ import { ContactsListComponentComponent } from './contacts-list-component/contac
 
 import {RouterModule } from '@angular/router';
 
-
-
+import {HttpModule} from '@angular/http';
+import 'rxjs/add/operator/map';
 
 
 import { ContactsAppRoutes } from './app.routes';
@@ -20,7 +20,7 @@ import { ContactDetailComponentComponent } from './contact-detail-component/cont
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsHeaderComponent, ContactsListComponentComponent, ContactDetailComponentComponent],
-  imports: [BrowserModule, RouterModule.forRoot(ContactsAppRoutes)],
+  imports: [BrowserModule, RouterModule.forRoot(ContactsAppRoutes), HttpModule],
   providers:[ContactsServiceService],
   bootstrap: [ContactsAppComponent]
 })
