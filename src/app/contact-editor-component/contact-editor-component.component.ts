@@ -25,6 +25,7 @@ export class ContactEditorComponentComponent implements OnInit {
 
   save(contact){
     this.contactsServiceService.updateContact(contact);
+    this.goToDetails(contact);
   }
 
   cancel(contact) {
