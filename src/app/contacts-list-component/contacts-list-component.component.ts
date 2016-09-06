@@ -7,6 +7,9 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+
+import 'rxjs/add/operator/merge';
 
 
 import {Subject} from 'rxjs/Subject';
@@ -22,20 +25,20 @@ export class ContactsListComponentComponent implements OnInit {
   private terms$ = new Subject<string>();
 
   ngOnInit(){
-    this.contacts = this.contactService.getContacts();
 
+   this.contacts = this.terms$.debounceTime(400)
+      .distinctUntilChanged() //Observable<string>
+      .switchMap(term => this.contactService.search(term)) //observable<contact[]>
+     .merge(this.contactService.getContacts());
 
-    this.terms$.debounceTime(400)
-      .distinctUntilChanged()
-      .subscribe(term => this.search(term));
+    //onload
+    //swicthMap not fired on load, only when user types, hence merge returns data
+    // but when userTypes - only switchMap fired
+
+    //flatMap , p,pa => requests out of order
   }
 
-  search(term: string){
 
-    console.log("SEARCH call - " +  term);
-    this.contacts = this.contactService.search(term);
-
-  }
 
   /*
 
