@@ -34,7 +34,7 @@ import { AboutComponentComponent } from './about-component/about-component.compo
   providers:[ContactsServiceService,EventBusServiceService,
     {
       provide: 'ConfirmNavigationGuard',
-      useValue: () => window.confirm('Navigate away without saving?')
+      useValue: (component) =>  (!component.warnOnClosing) || window.confirm('Navigate away without saving?')
     }],
   bootstrap: [ContactsAppComponent]
 })
