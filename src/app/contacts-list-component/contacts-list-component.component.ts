@@ -26,11 +26,17 @@ export class ContactsListComponentComponent implements OnInit {
 
   ngOnInit(){
 
-   this.contacts = this.terms$.debounceTime(400)
+
+    this.contacts = this.contactService.rawSearch(this.terms$)
+      .merge(this.contactService.getContacts());;
+
+
+
+   /*this.contacts = this.terms$.debounceTime(400)
       .distinctUntilChanged() //Observable<string>
       .switchMap(term => this.contactService.search(term)) //observable<contact[]>
      .merge(this.contactService.getContacts());
-
+*/
     //onload
     //swicthMap not fired on load, only when user types, hence merge returns data
     // but when userTypes - only switchMap fired
