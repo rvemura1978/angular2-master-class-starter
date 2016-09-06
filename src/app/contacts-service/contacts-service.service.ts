@@ -5,6 +5,8 @@ import {Http} from '@angular/http';
 import {Contact} from './../models/contact';
 import {Observable} from "rxjs";
 
+
+
 @Injectable()
 export class ContactsServiceService {
 
@@ -20,6 +22,22 @@ export class ContactsServiceService {
 
 
   }
+
+  search(term: string):Observable<Array<Contact>> {
+    return this.http.get(`${this.API_ENDPOINT}/search?text=${term}`)
+        .map((res) => {
+          return res.json().items
+        });
+
+
+  }
+
+  /*
+  search(term: string) {
+    return this.http.get(`${this.API_ENDPOINT}/search?text=${term}`)
+      .map(res => res.json().items);
+  }
+  */
 
   updateContact(contact: Contact) {
     return this.http.put(`${this.API_ENDPOINT}/contacts/${contact.id}`,contact);
