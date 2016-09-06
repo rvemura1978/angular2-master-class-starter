@@ -30,8 +30,8 @@ export class ContactsServiceService {
   rawSearch( terms: Observable<string>, debounceMs = 400):Observable<Array<Contact>> {
     return terms.debounceTime(debounceMs)
       .distinctUntilChanged()
-      .switchMap(term => this.search(term)) //observable<contact[]>
-      .merge(this.getContacts());
+      .switchMap(term => this.search(term)); //observable<contact[]>
+
   }
 
 

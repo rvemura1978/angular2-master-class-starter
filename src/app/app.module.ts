@@ -15,13 +15,15 @@ import 'rxjs/add/operator/map';
 import {FormsModule} from '@angular/forms';
 
 
-import { ContactDetailComponentComponent } from './contact-detail-component/contact-detail-component.component';
-import { ContactEditorComponentComponent } from './contact-editor-component/contact-editor-component.component';
+import { ContactDetailComponentComponent } from './contact-detail-component';
+import { ContactEditorComponentComponent } from './contact-editor-component';
 import { ContactsAppRoutes } from './app.routes';
+import { ContactsDetailViewComponent } from './contacts-detail-view';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsHeaderComponent, ContactsListComponentComponent, ContactDetailComponentComponent,
-    ContactEditorComponentComponent],
+    ContactEditorComponentComponent,
+    ContactsDetailViewComponent],
   imports: [BrowserModule, RouterModule.forRoot(ContactsAppRoutes), HttpModule, FormsModule],
   providers:[ContactsServiceService],
   bootstrap: [ContactsAppComponent]
