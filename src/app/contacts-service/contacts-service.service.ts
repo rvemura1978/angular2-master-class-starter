@@ -5,7 +5,11 @@ import {Http} from '@angular/http';
 import {Contact} from './../models/contact';
 import {Observable} from "rxjs";
 
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 
+import 'rxjs/add/operator/merge';
 
 @Injectable()
 export class ContactsServiceService {
@@ -22,6 +26,14 @@ export class ContactsServiceService {
 
 
   }
+
+  rawSearch( terms: Observable<string>, debounceMs = 400):Observable<Array<Contact>> {
+    return terms.debounceTime(debounceMs)
+      .distinctUntilChanged()
+      .switchMap(term => this.search(term)) //observable<contact[]>
+      .merge(this.getContacts());
+  }
+
 
   search(term: string):Observable<Array<Contact>> {
     return this.http.get(`${this.API_ENDPOINT}/search?text=${term}`)
