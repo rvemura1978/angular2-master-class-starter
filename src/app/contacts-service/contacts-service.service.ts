@@ -21,6 +21,9 @@ export class ContactsServiceService {
 
   }
 
+  updateContact(contact: Contact) {
+    return this.http.put(`${this.API_ENDPOINT}/contacts/${contact.id}`,contact);
+  }
 
   getContacts():Observable<Array<Contact>> {
     return this.http.get(`${this.API_ENDPOINT}/contacts`)

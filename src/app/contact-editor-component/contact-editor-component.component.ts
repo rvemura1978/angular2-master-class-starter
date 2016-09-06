@@ -24,8 +24,9 @@ export class ContactEditorComponentComponent implements OnInit {
   }
 
   save(contact){
-    this.contactsServiceService.updateContact(contact);
-    this.goToDetails(contact);
+    this.contactsServiceService.updateContact(contact)
+      .subscribe(() => this.goToDetails(this.contact));
+
   }
 
   cancel(contact) {
@@ -33,6 +34,7 @@ export class ContactEditorComponentComponent implements OnInit {
   }
 
   goToDetails(contact:Contact) {
-    this.router.navigate(['/contact'],contact.id);
+    console.log(contact.id);
+    this.router.navigate(['/contact',contact.id]);
   }
 }
