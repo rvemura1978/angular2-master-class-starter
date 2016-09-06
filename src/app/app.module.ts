@@ -24,7 +24,6 @@ import { ContactsDetailViewComponent } from './contacts-detail-view';
 import {EventBusServiceService} from './event-bus-service.service';
 import { ContactsDashboardComponentComponent } from './contacts-dashboard-component/contacts-dashboard-component.component';
 import { AboutComponentComponent } from './about-component/about-component.component';
-
 @NgModule({
   declarations: [ContactsAppComponent, ContactsHeaderComponent, ContactsListComponentComponent, ContactDetailComponentComponent,
     ContactEditorComponentComponent,
@@ -32,7 +31,11 @@ import { AboutComponentComponent } from './about-component/about-component.compo
     ContactsDashboardComponentComponent,
     AboutComponentComponent],
   imports: [BrowserModule, RouterModule.forRoot(ContactsAppRoutes), HttpModule, FormsModule],
-  providers:[ContactsServiceService,EventBusServiceService],
+  providers:[ContactsServiceService,EventBusServiceService,
+    {
+      provide: 'ConfirmNavigationGuard',
+      useValue: () => window.confirm('Navigate away without saving?')
+    }],
   bootstrap: [ContactsAppComponent]
 })
 export class ContactsModule {

@@ -8,13 +8,14 @@ import {ContactDetailComponentComponent} from './contact-detail-component/contac
 import {ContactEditorComponentComponent} from './contact-editor-component/contact-editor-component.component';
 
 
+
 export const ContactsAppRoutes = [
   { path: '', component: ContactsDashboardComponentComponent,
     children: [
       { path: '', redirectTo: 'contact/0' },
 
       { path: 'contact/:id', component: ContactsDetailViewComponent },
-      { path: 'contact/:id/edit', component: ContactEditorComponentComponent }
+      { path: 'contact/:id/edit', component: ContactEditorComponentComponent, canDeactivate: ['ConfirmNavigationGuard'] }
     ]
   },
   { path: 'about', component: AboutComponentComponent },
