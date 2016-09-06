@@ -22,11 +22,15 @@ import { ContactEditorComponentComponent } from './contact-editor-component';
 import { ContactsAppRoutes } from './app.routes';
 import { ContactsDetailViewComponent } from './contacts-detail-view';
 import {EventBusServiceService} from './event-bus-service.service';
+import { ContactsDashboardComponentComponent } from './contacts-dashboard-component/contacts-dashboard-component.component';
+import { AboutComponentComponent } from './about-component/about-component.component';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsHeaderComponent, ContactsListComponentComponent, ContactDetailComponentComponent,
     ContactEditorComponentComponent,
-    ContactsDetailViewComponent],
+    ContactsDetailViewComponent,
+    ContactsDashboardComponentComponent,
+    AboutComponentComponent],
   imports: [BrowserModule, RouterModule.forRoot(ContactsAppRoutes), HttpModule, FormsModule],
   providers:[ContactsServiceService,EventBusServiceService],
   bootstrap: [ContactsAppComponent]
