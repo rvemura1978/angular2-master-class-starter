@@ -1,3 +1,9 @@
+<div class="input-field col s12">
+  <label class="active" for="search">Search</label>
+  <input id="search" name="search" type="text" (input)="search($event.target.value)">
+
+</div>
+
 <ul class="collection">
 <li *ngFor="let contact of contacts" class="collection-item avatar">
   <a [routerLink]="['/contact', contact.id]">
