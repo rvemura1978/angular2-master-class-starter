@@ -11,6 +11,8 @@ import {RouterModule } from '@angular/router';
 
 import {HttpModule} from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+
 
 import {FormsModule} from '@angular/forms';
 
@@ -19,13 +21,14 @@ import { ContactDetailComponentComponent } from './contact-detail-component';
 import { ContactEditorComponentComponent } from './contact-editor-component';
 import { ContactsAppRoutes } from './app.routes';
 import { ContactsDetailViewComponent } from './contacts-detail-view';
+import {EventBusServiceService} from './event-bus-service.service';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsHeaderComponent, ContactsListComponentComponent, ContactDetailComponentComponent,
     ContactEditorComponentComponent,
     ContactsDetailViewComponent],
   imports: [BrowserModule, RouterModule.forRoot(ContactsAppRoutes), HttpModule, FormsModule],
-  providers:[ContactsServiceService],
+  providers:[ContactsServiceService,EventBusServiceService],
   bootstrap: [ContactsAppComponent]
 })
 export class ContactsModule {

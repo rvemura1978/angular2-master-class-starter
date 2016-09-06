@@ -10,6 +10,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
 import 'rxjs/add/operator/merge';
+import {EventBusServiceService} from './../event-bus-service.service';
 
 
 import {Subject} from 'rxjs/Subject';
@@ -21,14 +22,18 @@ import {Subject} from 'rxjs/Subject';
 export class ContactsListComponentComponent implements OnInit {
 
   contacts:Observable<Array<Contact>>;
-  constructor(private contactService:ContactsServiceService){}
+  constructor(private contactService:ContactsServiceService, private eventService:EventBusServiceService){
+
+
+
+    eventService.emit('appTitleChange','Contacts');
+  }
   private terms$ = new Subject<string>();
 
   ngOnInit(){
 
-
     this.contacts = this.contactService.rawSearch(this.terms$)
-      .merge(this.contactService.getContacts());;
+      .merge(this.contactService.getContacts());
 
 
 

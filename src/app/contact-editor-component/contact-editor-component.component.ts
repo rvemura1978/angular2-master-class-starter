@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ContactsServiceService} from './../contacts-service/contacts-service.service';
 import {Contact} from './../models/contact';
 import {ActivatedRoute, Router  } from '@angular/router';
+import {EventBusServiceService} from './../event-bus-service.service';
+
 @Component({
   selector: 'trm-contact-editor-component',
   templateUrl: 'contact-editor-component.component.html',
@@ -12,7 +14,8 @@ export class ContactEditorComponentComponent implements OnInit {
 
   contact: Contact = <Contact>{ address: {}};
 
-  constructor(private contactsServiceService:ContactsServiceService,private route: ActivatedRoute, private router:Router) { }
+  constructor(private contactsServiceService:ContactsServiceService,private route: ActivatedRoute,
+              private router:Router,private eventBusService:EventBusServiceService) { }
 
   ngOnInit() {
     let id = this.route.snapshot.params['id'];
@@ -20,6 +23,7 @@ export class ContactEditorComponentComponent implements OnInit {
       .subscribe(contact => {
         this.contact = contact;
         this.contact.address = contact.address;
+        this.eventBusService.emit('appTitleChange',`Editing ${contact.name}`);
       });
   }
 
