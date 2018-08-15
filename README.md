@@ -9,7 +9,6 @@ $ git clone https://github.com/thoughtram/angular2-master-class-starter.git
 ```
 
 Done? Great, now install the dependencies (this might take a little while):
-
 ```
 $ cd angular2-master-class-starter
 $ npm install
